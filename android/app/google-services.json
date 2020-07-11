@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "370096436233",
+    "firebase_url": "https://tapapp-ec02f.firebaseio.com",
+    "project_id": "tapapp-ec02f",
+    "storage_bucket": "tapapp-ec02f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370096436233:android:978b1b6eb56192352a74d8",
+        "android_client_info": {
+          "package_name": "com.mushanidev.tapapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370096436233-m1i5leoe4fv2qbmgcel4iah857s7svl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcOB2COMfnObbrcJbRYRDKzMHCM7SyRFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370096436233-m1i5leoe4fv2qbmgcel4iah857s7svl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
