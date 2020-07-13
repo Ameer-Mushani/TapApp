@@ -108,14 +108,17 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   DatabaseReference dbRef;
-  int mainNum = 0;
+  int mainNum;
   //listener for updates in database
   StreamSubscription<Event> dbSubscription;
   DatabaseError _error;
   @override
   void initState() {
     super.initState();
-    dbRef =  FirebaseDatabase.instance.reference().child("mainNum");
+  }
+
+  Future<int> getData() async {
+    dbRef = FirebaseDatabase.instance.reference().child("mainNum");
     dbRef.once().then((DataSnapshot snapshot) {
       //stores the value taken from the initial snapshot of the database
       print("connected to database. value in cloud is: ${snapshot.value}");
@@ -134,10 +137,9 @@ class _MainPageState extends State<MainPage> {
         _error = error;
       });
     });
+    return mainNum;
   }
-  Future<void> getData() async {
 
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,7 +158,7 @@ class _MainPageState extends State<MainPage> {
                     onPressed: () {
                       print("top");
                       setState(() {
-                        dbRef.set(mainNum +1);
+                        dbRef.set(mainNum + 1);
                       });
                     },
                     child: Text(
@@ -184,7 +186,7 @@ class _MainPageState extends State<MainPage> {
                     onPressed: () {
                       print("bottom");
                       setState(() {
-                        dbRef.set(mainNum- 1);
+                        dbRef.set(mainNum - 1);
                       });
                     },
                     child: Text(
@@ -201,13 +203,22 @@ class _MainPageState extends State<MainPage> {
           ),
           Align(
             alignment: Alignment.center,
-            child: Text(
-              "$mainNum",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 100,
-              ),
-            ),
+            child: FutureBuilder(
+                future: getData(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(
+                      "$mainNum",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 100,
+                      ),
+                    );
+                  }
+                  else{
+                    return CircularProgressIndicator();
+                  }
+                }),
           )
         ],
       ),
